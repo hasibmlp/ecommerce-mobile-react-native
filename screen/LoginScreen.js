@@ -59,7 +59,10 @@ export default function LoginScreen({ navigation }) {
                 .accessToken,
           },
           expires: 1000 * 3600,
-        });
+        }).then(() => {
+            navigation.replace("HomeScreen")
+        })
+
       });
   }
 

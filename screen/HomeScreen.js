@@ -9,9 +9,9 @@ import {
 } from "react-native";
 import storage from "../utils/storage";
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
   const [token, setToken] = useState("");
-  const [ user , setUser ] = useState({})
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const getToken = () => {
@@ -27,7 +27,7 @@ export default function HomeScreen() {
         })
         .then((ret) => {
           console.log(ret.token);
-          setToken(ret.token)
+          setToken(ret.token);
         })
         .catch((err) => {
           console.warn(err.message);
@@ -38,7 +38,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     const getUserData = () => {
-      console.log("TOKEN: ",token)
+      console.log("TOKEN: ", token);
       const query = `
         query {
           customer(customerAccessToken: "${token}" ) {
@@ -60,30 +60,46 @@ export default function HomeScreen() {
             "ff031bf264f816c80da166c05bc93a87",
         },
         body: JSON.stringify({
-          query
+          query,
         }),
       })
         .then((r) => r.json())
         .then((data) => {
-          console.log(data.data.customer.email);
-          setUser(data.data.customer)
+          console.log(data?.data?.customer?.email);
+          setUser(data?.data?.customer);
         });
     };
     getUserData();
   }, [token]);
 
-  const guestWelcome = (
-    <Text style={styles.text}>Welcome Guest!</Text>
-  )
-  const userWelcome = (
-    <Text style={styles.text}> Hello, {user.email}</Text>
-  )
+  const guestWelcome = <Text style={styles.text}>Welcome Guest!</Text>;
+  const userWelcome = <Text style={styles.text}> Hello, {user?.email}</Text>;
 
   return (
     <View style={styles.container}>
-      {
-        Object.keys(user).length ? userWelcome : guestWelcome
-      }
+      {user && Object.keys(user).length ? userWelcome : guestWelcome}
+
+      {user && Object.keys(user).length ? (
+        <Pressable
+          onPress={() => {
+            // remove a single record
+            storage.remove({
+              key: "token",
+            });
+            setToken("");
+          }}
+        >
+          <Text>LogOut</Text>
+        </Pressable>
+      ) : (
+        <Pressable
+          onPress={() => {
+            navigation.navigate("LoginScreen");
+          }}
+        >
+          <Text>Login</Text>
+        </Pressable>
+      )}
     </View>
   );
 }
