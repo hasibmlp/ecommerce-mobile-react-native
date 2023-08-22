@@ -21,7 +21,7 @@ const query =
     },
   };
 
-export default function RegisterScreen() {
+export default function RegisterScreen({ navigation }) {
   const [name, setName] = useState("");
   const [data, setData] = useState({});
 
@@ -66,7 +66,7 @@ export default function RegisterScreen() {
         </Pressable>
         <View style={styles.moreOption}>
           <Text style={styles.moreOptionText}>Already have an account?</Text>
-          <Text style={styles.moreOptionLogin}>Login</Text>
+          <Text style={styles.moreOptionLogin} onPress={() => navigation.navigate('LoginScreen')}>Login</Text>
         </View>
       </View>
     </View>

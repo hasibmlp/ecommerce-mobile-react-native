@@ -31,7 +31,7 @@ const variables = {
   },
 };
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
   const [name, setName] = useState("");
   const [data, setData] = useState({});
 
@@ -68,7 +68,7 @@ export default function LoginScreen() {
         </Pressable>
         <View style={styles.moreOption}>
           <Text style={styles.moreOptionText}>Don't have an account?</Text>
-          <Text style={styles.moreOptionLogin}>Register</Text>
+          <Text style={styles.moreOptionLogin} onPress={() => navigation.navigate("RegisterScreen")}>Register</Text>
         </View>
       </View>
     </View>
