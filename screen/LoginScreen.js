@@ -7,6 +7,7 @@ import {
   Pressable,
   Alert,
 } from "react-native";
+import storage from "../utils/storage";
 
 const query = `
     mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
@@ -48,7 +49,18 @@ export default function LoginScreen({ navigation }) {
       }),
     })
       .then((r) => r.json())
-      .then((data) => console.log("data returned:", data));
+      .then((data) => {
+        console.log(data);
+        storage.save({
+          key: "token", // Note: Do not use underscore("_") in key!
+          data: {
+            token:
+              data.data.customerAccessTokenCreate.customerAccessToken
+                .accessToken,
+          },
+          expires: 1000 * 3600,
+        });
+      });
   }
 
   return (
@@ -68,7 +80,12 @@ export default function LoginScreen({ navigation }) {
         </Pressable>
         <View style={styles.moreOption}>
           <Text style={styles.moreOptionText}>Don't have an account?</Text>
-          <Text style={styles.moreOptionLogin} onPress={() => navigation.navigate("RegisterScreen")}>Register</Text>
+          <Text
+            style={styles.moreOptionLogin}
+            onPress={() => navigation.navigate("RegisterScreen")}
+          >
+            Register
+          </Text>
         </View>
       </View>
     </View>
