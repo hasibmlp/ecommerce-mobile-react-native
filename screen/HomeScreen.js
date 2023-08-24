@@ -7,7 +7,9 @@ import {
   Pressable,
   Alert,
 } from "react-native";
+
 import storage from "../utils/storage";
+import { Carousal } from "../components/Carousal";
 
 export default function HomeScreen({ navigation }) {
   const [token, setToken] = useState("");
@@ -77,6 +79,11 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+
+
+      <Carousal />
+
+
       {user && Object.keys(user).length ? userWelcome : guestWelcome}
 
       {user && Object.keys(user).length ? (
