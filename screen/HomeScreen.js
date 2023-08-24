@@ -83,7 +83,6 @@ export default function HomeScreen({ navigation }) {
 
       <Carousal />
 
-
       {user && Object.keys(user).length ? userWelcome : guestWelcome}
 
       {user && Object.keys(user).length ? (

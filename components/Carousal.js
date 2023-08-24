@@ -28,8 +28,8 @@ export function Carousal () {
 
     function RenderItem ({item, index}) {
         return (
-            <View style={{}}>
-                <Image source={item.imageUrl} style={ {width: (screenWidth - 30), height: 300, resizeMode: 'contain' } }  />
+            <View >
+                <Image source={item.imageUrl} style={ {width: (screenWidth - 30), height: 350 } }  />
             </View>
         )
     }
@@ -45,6 +45,7 @@ export function Carousal () {
         keyExtractor={item => item.id }
         horizontal = {true}
         pagingEnabled = {true}
+        style={{backgroundColor: 'green', flexGrow: 0 }}
         />
     )
 }
