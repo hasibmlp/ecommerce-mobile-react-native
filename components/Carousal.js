@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { FlatList, View, Text, Image, StyleSheet, Dimensions } from "react-native";
 
 const products = [
@@ -21,26 +21,6 @@ const products = [
 export function Carousal () {
 
     const [ activeIndex , setActiveInex ] = useState(0)
-    // const flatListRef = useRef()
-
-    // useEffect(() => {
-    //     let interval = setInterval(() => {
-    //         if (activeIndex === products.length - 1) {
-    //             flatListRef.current.scrollToIndex({
-    //                 index: 0,
-    //                 animation: true,
-    //             })
-    //             console.log("last index")
-    //         }else {
-    //             flatListRef.current.scrollToIndex({
-    //                 index: activeIndex + 1,
-    //                 animation: true,
-    //             })
-    //             console.log("not last index")
-    //         }
-    //     }, 2000)
-    //     return () => clearInterval(interval)
-    // })
 
     const screenWidth = Dimensions.get('window').width
 
@@ -64,17 +44,7 @@ export function Carousal () {
         renderItem={RenderItem}
         keyExtractor={item => item.id }
         horizontal = {true}
-        // ref={flatListRef}
-        // getItemLayout={(data, index) => ({width: screenWidth - 30, offset: (screenWidth - 30) * index, index: index})}
         pagingEnabled = {true}
-        onScroll={(event) => {
-            const scrollPosition = event.nativeEvent.contentOffset.x
-            const index = scrollPosition / (screenWidth - 30)
-            console.log("index: ", index)
-            setActiveInex(index)
-            console.log("acive index: ", activeIndex)
-            
-        }}
         />
     )
 }
