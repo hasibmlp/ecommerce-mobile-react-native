@@ -81,7 +81,7 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
-      <UserInformation />
+      <UserInformation navigation={navigation} />
       <Carousal />
 
       {user && Object.keys(user).length ? userWelcome : guestWelcome}

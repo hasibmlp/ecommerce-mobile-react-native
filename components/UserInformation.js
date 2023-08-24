@@ -1,14 +1,14 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Alert, Pressable } from 'react-native'
 
-export default function UserInformation () {
+export default function UserInformation ({ navigation }) {
     return (
         <View style={styles.container}>
         <View style={styles.userDetails}>
             <Text style={ styles.subText }>Welcome</Text>
             <Text style={ styles.Text }>Muhammad Thahir</Text>
         </View>
-        <View style={styles.userAvatarContainer}>
-        </View>
+        <Pressable style={styles.userAvatarContainer} onPress={() => { navigation.navigate("ProfileScreen") }}>
+        </Pressable>
         </View>
     )
 }
