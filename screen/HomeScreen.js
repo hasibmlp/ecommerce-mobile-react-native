@@ -6,10 +6,13 @@ import {
   TextInput,
   Pressable,
   Alert,
+  ScrollView,
 } from "react-native";
+import styled from "styled-components";
 
 import storage from "../utils/storage";
 import { Carousal } from "../components/Carousal";
+import Card from "../components/Card";
 
 export default function HomeScreen({ navigation }) {
   const [token, setToken] = useState("");
@@ -79,9 +82,25 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-
-
       <Carousal />
+      <SubTitle>Featured</SubTitle>
+      <ScrollView horizontal>
+        <Card 
+        image={require("../assets/prod.jpg")}
+        title={'Amazing Product'}
+        price={'100.0'}
+        />
+        <Card 
+        image={require("../assets/prod.jpg")}
+        title={'Amazing Product'}
+        price={'100.0'}
+        />
+        <Card 
+        image={require("../assets/prod.jpg")}
+        title={'Amazing Product'}
+        price={'100.0'}
+        />
+      </ScrollView>
 
       {user && Object.keys(user).length ? userWelcome : guestWelcome}
 
@@ -120,3 +139,12 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
+
+const SubTitle = styled.Text`
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2;
+  color: gray;
+  margin-top: 20px;
+`;
