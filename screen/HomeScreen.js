@@ -6,10 +6,12 @@ import {
   TextInput,
   Pressable,
   Alert,
+  ScrollView,
 } from "react-native";
 
 import storage from "../utils/storage";
 import { Carousal } from "../components/Carousal";
+import CategoryCard from "../components/CategoryCard";
 
 export default function HomeScreen({ navigation }) {
   const [token, setToken] = useState("");
@@ -80,6 +82,12 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
+      <ScrollView style={{flexGrow: 0}} horizontal showsHorizontalScrollIndicator={false}>
+        <CategoryCard title={'Men'} />
+        <CategoryCard title={'Women'} />
+        <CategoryCard title={'Large Sizes'} />
+        <CategoryCard title={'Wathes'} />
+      </ScrollView>
 
       <Carousal />
 
