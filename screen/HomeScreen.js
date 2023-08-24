@@ -10,6 +10,7 @@ import {
 
 import storage from "../utils/storage";
 import { Carousal } from "../components/Carousal";
+import UserInformation from "../components/UserInformation";
 
 export default function HomeScreen({ navigation }) {
   const [token, setToken] = useState("");
@@ -80,7 +81,7 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
-
+      <UserInformation />
       <Carousal />
 
       {user && Object.keys(user).length ? userWelcome : guestWelcome}
