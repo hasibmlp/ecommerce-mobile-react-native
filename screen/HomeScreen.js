@@ -6,6 +6,7 @@ import {
   TextInput,
   Pressable,
   Alert,
+  ScrollView,
 } from "react-native";
 
 import storage from "../utils/storage";
@@ -82,32 +83,36 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
+      <ScrollView>
+        <UserInformation navigation={navigation} />
+        <Carousal />
+        {/* <VerticalCarousal /> */}
 
-      <Carousal />
+        {user && Object.keys(user).length ? userWelcome : guestWelcome}
 
-      {user && Object.keys(user).length ? userWelcome : guestWelcome}
+        {user && Object.keys(user).length ? (
+          <Pressable
+            onPress={() => {
+              // remove a single record
+              storage.remove({
+                key: "token",
+              });
+              setToken("");
+            }}
+          >
+            <Text>LogOut</Text>
+          </Pressable>
+        ) : (
+          <Pressable
+            onPress={() => {
+              navigation.navigate("LoginScreen");
+            }}
+          >
+            <Text>Login</Text>
+          </Pressable>
+        )}
+      </ScrollView>
 
-      {user && Object.keys(user).length ? (
-        <Pressable
-          onPress={() => {
-            // remove a single record
-            storage.remove({
-              key: "token",
-            });
-            setToken("");
-          }}
-        >
-          <Text>LogOut</Text>
-        </Pressable>
-      ) : (
-        <Pressable
-          onPress={() => {
-            navigation.navigate("LoginScreen");
-          }}
-        >
-          <Text>Login</Text>
-        </Pressable>
-      )}
     </View>
   );
 }
@@ -115,7 +120,6 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
   },
   text: {
     fontSize: 18,

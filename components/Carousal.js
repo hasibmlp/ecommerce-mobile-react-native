@@ -29,7 +29,7 @@ export function Carousal () {
     function RenderItem ({item, index}) {
         return (
             <View >
-                <Image source={item.imageUrl} style={ {width: (screenWidth - 30), height: 350 } }  />
+                <Image source={item.imageUrl} style={ {width: screenWidth, height: 350 } }  />
             </View>
         )
     }
