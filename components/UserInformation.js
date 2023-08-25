@@ -23,7 +23,7 @@ const Container = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0 15px;
+    padding: 15px 15px 15px;
 `
 
 const UserDetail = styled.View`
