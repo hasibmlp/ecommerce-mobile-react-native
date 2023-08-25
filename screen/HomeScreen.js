@@ -8,12 +8,14 @@ import {
   Alert,
   ScrollView,
 } from "react-native";
+import styled from "styled-components";
 
 import storage from "../utils/storage";
 import { Carousal } from "../components/Carousal";
 import VerticalCarousal from "../components/VerticalCarousal";
 import UserInformation from "../components/UserInformation";
 import CategoryCard from "../components/CategoryCard";
+import Card from "../components/Card";
 
 export default function HomeScreen({ navigation }) {
   const [token, setToken] = useState("");
@@ -83,21 +85,42 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-
       <ScrollView>
-
         <UserInformation navigation={navigation} />
-
         <Carousal />
 
-        <ScrollView style={{flexGrow: 0}} horizontal showsHorizontalScrollIndicator={false}>
-          <CategoryCard title={'Men'} />
-          <CategoryCard title={'Women'} />
-          <CategoryCard title={'Large Sizes'} />
-          <CategoryCard title={'Wathes'} />
+        <ScrollView
+          style={{ flexGrow: 0 }}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
+          <CategoryCard title={"Men"} />
+          <CategoryCard title={"Women"} />
+          <CategoryCard title={"Large Sizes"} />
+          <CategoryCard title={"Wathes"} />
         </ScrollView>
 
         {/* <VerticalCarousal /> */}
+
+        <SubTitle>Featured</SubTitle>
+
+        <ScrollView horizontal style={{paddingBottom: 20}} showsHorizontalScrollIndicator={false}>
+          <Card
+            image={require("../assets/prod.jpg")}
+            title={"Amazing Product"}
+            price={"100.0"}
+          />
+          <Card
+            image={require("../assets/prod.jpg")}
+            title={"Amazing Product"}
+            price={"100.0"}
+          />
+          <Card
+            image={require("../assets/prod.jpg")}
+            title={"Amazing Product"}
+            price={"100.0"}
+          />
+        </ScrollView>
 
         {user && Object.keys(user).length ? userWelcome : guestWelcome}
 
@@ -123,7 +146,6 @@ export default function HomeScreen({ navigation }) {
           </Pressable>
         )}
       </ScrollView>
-
     </View>
   );
 }
@@ -137,3 +159,12 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
 });
+
+const SubTitle = styled.Text`
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.2;
+  color: gray;
+  padding: 0 15px;
+`;
