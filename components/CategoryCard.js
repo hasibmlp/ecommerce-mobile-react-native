@@ -13,7 +13,7 @@ export default function CategoryCard ({title}) {
 }
 
 const Shadow = styled.View`
-    box-shadow: 0 5px 15px rgba(0,0,0, 0.2);
+    box-shadow: 0 5px 5px rgba(0,0,0, 0.1);
 `
 
 const Container = styled.View`
