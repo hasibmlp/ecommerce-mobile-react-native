@@ -45,7 +45,7 @@ export function Carousal () {
         keyExtractor={item => item.id }
         horizontal = {true}
         pagingEnabled = {true}
-        style={{backgroundColor: 'green', flexGrow: 0 }}
+        style={{flexGrow: 0 }}
         />
     )
 }

@@ -11,6 +11,7 @@ import {
 import storage from "../utils/storage";
 import { Carousal } from "../components/Carousal";
 import VerticalCarousal from "../components/VerticalCarousal";
+import UserInformation from "../components/UserInformation";
 
 export default function HomeScreen({ navigation }) {
   const [token, setToken] = useState("");
@@ -81,7 +82,6 @@ export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
 
-    <VerticalCarousal />
 
       <Carousal />
 
