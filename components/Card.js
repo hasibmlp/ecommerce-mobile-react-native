@@ -1,18 +1,20 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import styled from "styled-components";
 
-export default function Card({ image, title, price }) {
+export default function Card({ navigation, image, title, price }) {
   return (
     <Shadow>
-        <Container>
-        <Cover>
-            <Image source={image} />
-        </Cover>
-            <Details>
-                <Title>{title}</Title>
-                <Price>{price}</Price>
-            </Details>
-        </Container>
+      <TouchableOpacity onPress={() => navigation.navigate("ProductDetailScreen")}>
+          <Container>
+          <Cover>
+              <Image source={image} />
+          </Cover>
+              <Details>
+                  <Title>{title}</Title>
+                  <Price>{price}</Price>
+              </Details>
+          </Container>
+        </TouchableOpacity>
     </Shadow>
   );
 }

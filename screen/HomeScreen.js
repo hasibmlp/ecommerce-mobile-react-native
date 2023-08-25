@@ -17,6 +17,24 @@ import UserInformation from "../components/UserInformation";
 import CategoryCard from "../components/CategoryCard";
 import Card from "../components/Card";
 
+const products = [
+  {
+    image: require("../assets/prod.jpg"),
+    title: "Amazing Product",
+    price: "100.0",
+  },
+  {
+    image: require("../assets/prod.jpg"),
+    title: "Amazing Product2",
+    price: "100.0",
+  },
+  {
+    image: require("../assets/prod.jpg"),
+    title: "Amazing Product3",
+    price: "100.0",
+  }
+]
+
 export default function HomeScreen({ navigation }) {
   const [token, setToken] = useState("");
   const [user, setUser] = useState({});
@@ -104,22 +122,21 @@ export default function HomeScreen({ navigation }) {
 
         <SubTitle>Featured</SubTitle>
 
-        <ScrollView horizontal style={{paddingBottom: 20}} showsHorizontalScrollIndicator={false}>
-          <Card
-            image={require("../assets/prod.jpg")}
-            title={"Amazing Product"}
-            price={"100.0"}
-          />
-          <Card
-            image={require("../assets/prod.jpg")}
-            title={"Amazing Product"}
-            price={"100.0"}
-          />
-          <Card
-            image={require("../assets/prod.jpg")}
-            title={"Amazing Product"}
-            price={"100.0"}
-          />
+        <ScrollView
+          horizontal
+          style={{ paddingBottom: 20 }}
+          showsHorizontalScrollIndicator={false}
+        >
+          {products.map((item) => {
+            return (
+              <Card
+                navigation={navigation}
+                image={item.image}
+                title={item.title}
+                price={item.price}
+              />
+            );
+          })}
         </ScrollView>
 
         {/* {user && Object.keys(user).length ? userWelcome : guestWelcome}
@@ -145,7 +162,6 @@ export default function HomeScreen({ navigation }) {
             <Text>Login</Text>
           </Pressable>
         )} */}
-        
       </ScrollView>
     </View>
   );
