@@ -13,6 +13,7 @@ import storage from "../utils/storage";
 import { Carousal } from "../components/Carousal";
 import VerticalCarousal from "../components/VerticalCarousal";
 import UserInformation from "../components/UserInformation";
+import CategoryCard from "../components/CategoryCard";
 
 export default function HomeScreen({ navigation }) {
   const [token, setToken] = useState("");
@@ -84,8 +85,18 @@ export default function HomeScreen({ navigation }) {
     <View style={styles.container}>
 
       <ScrollView>
+
         <UserInformation navigation={navigation} />
+
         <Carousal />
+
+        <ScrollView style={{flexGrow: 0}} horizontal showsHorizontalScrollIndicator={false}>
+          <CategoryCard title={'Men'} />
+          <CategoryCard title={'Women'} />
+          <CategoryCard title={'Large Sizes'} />
+          <CategoryCard title={'Wathes'} />
+        </ScrollView>
+
         {/* <VerticalCarousal /> */}
 
         {user && Object.keys(user).length ? userWelcome : guestWelcome}
