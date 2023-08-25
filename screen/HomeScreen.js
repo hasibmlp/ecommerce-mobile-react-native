@@ -122,7 +122,7 @@ export default function HomeScreen({ navigation }) {
           />
         </ScrollView>
 
-        {user && Object.keys(user).length ? userWelcome : guestWelcome}
+        {/* {user && Object.keys(user).length ? userWelcome : guestWelcome}
 
         {user && Object.keys(user).length ? (
           <Pressable
@@ -144,7 +144,8 @@ export default function HomeScreen({ navigation }) {
           >
             <Text>Login</Text>
           </Pressable>
-        )}
+        )} */}
+        
       </ScrollView>
     </View>
   );
