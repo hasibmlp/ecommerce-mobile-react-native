@@ -7,7 +7,7 @@ export default function Card({ navigation, image, title, price }) {
       <TouchableOpacity onPress={() => navigation.navigate("ProductDetailScreen")}>
           <Container>
           <Cover>
-              <Image source={image} />
+              <Image src={image} />
           </Cover>
               <Details>
                   <Title>{title}</Title>
