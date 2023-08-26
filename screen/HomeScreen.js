@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useQuery, gql } from '@apollo/client';
 import {
   StyleSheet,
   Text,
@@ -16,6 +17,8 @@ import VerticalCarousal from "../components/VerticalCarousal";
 import UserInformation from "../components/UserInformation";
 import CategoryCard from "../components/CategoryCard";
 import Card from "../components/Card";
+import { GET_COLLECTION } from "../graphql/queries";
+
 
 const products = [
   {
@@ -36,70 +39,92 @@ const products = [
 ]
 
 export default function HomeScreen({ navigation }) {
-  const [token, setToken] = useState("");
-  const [user, setUser] = useState({});
+  const { data, loading, error } = useQuery(GET_COLLECTION)
 
-  useEffect(() => {
-    const getToken = () => {
-      console.log("getToken is running...");
-      storage
-        .load({
-          key: "token",
-          autoSync: false,
-          syncInBackground: true,
-          syncParams: {
-            someFlag: true,
-          },
-        })
-        .then((ret) => {
-          console.log(ret.token);
-          setToken(ret.token);
-        })
-        .catch((err) => {
-          console.warn(err.message);
-        });
-    };
-    getToken();
-  }, []);
 
-  useEffect(() => {
-    const getUserData = () => {
-      console.log("TOKEN: ", token);
-      const query = `
-        query {
-          customer(customerAccessToken: "${token}" ) {
-            id
-            firstName
-            lastName
-            acceptsMarketing
-            email
-            phone
-          }
-        }
-        `;
+  const prods = data.collection.products.edges.map(({node}) => {
+    console.log(node)
+    return {
+      id: node.id,
+      title: node.title,
+      image: node.featuredImage.url
+    }
+  })
 
-      fetch("https://trappist-1e.myshopify.com/api/2023-01/graphql.json", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Shopify-Storefront-Access-Token":
-            "ff031bf264f816c80da166c05bc93a87",
-        },
-        body: JSON.stringify({
-          query,
-        }),
-      })
-        .then((r) => r.json())
-        .then((data) => {
-          console.log(data?.data?.customer?.email);
-          setUser(data?.data?.customer);
-        });
-    };
-    getUserData();
-  }, [token]);
 
-  const guestWelcome = <Text style={styles.text}>Welcome Guest!</Text>;
-  const userWelcome = <Text style={styles.text}> Hello, {user?.email}</Text>;
+  console.log(prods)
+
+
+  // const products = 
+
+  // const [token, setToken] = useState("");
+  // const [user, setUser] = useState({});
+
+  // useEffect(() => {
+  //   const getToken = () => {
+  //     console.log("getToken is running...");
+  //     storage
+  //       .load({
+  //         key: "token",
+  //         autoSync: false,
+  //         syncInBackground: true,
+  //         syncParams: {
+  //           someFlag: true,
+  //         },
+  //       })
+  //       .then((ret) => {
+  //         console.log(ret.token);
+  //         setToken(ret.token);
+  //       })
+  //       .catch((err) => {
+  //         console.warn(err.message);
+  //       });
+  //   };
+  //   getToken();
+  // }, []);
+
+  // useEffect(() => {
+  //   const getUserData = () => {
+  //     console.log("TOKEN: ", token);
+  //     const query = `
+  //       query {
+  //         customer(customerAccessToken: "${token}" ) {
+  //           id
+  //           firstName
+  //           lastName
+  //           acceptsMarketing
+  //           email
+  //           phone
+  //         }
+  //       }
+  //       `;
+
+  //     fetch("https://trappist-1e.myshopify.com/api/2023-01/graphql.json", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         "X-Shopify-Storefront-Access-Token":
+  //           "ff031bf264f816c80da166c05bc93a87",
+  //       },
+  //       body: JSON.stringify({
+  //         query,
+  //       }),
+  //     })
+  //       .then((r) => r.json())
+  //       .then((data) => {
+  //         console.log(data?.data?.customer?.email);
+  //         setUser(data?.data?.customer);
+  //       });
+  //   };
+  //   getUserData();
+  // }, [token]);
+
+  // const guestWelcome = <Text style={styles.text}>Welcome Guest!</Text>;
+  // const userWelcome = <Text style={styles.text}> Hello, {user?.email}</Text>;
+
+  
+
+  if (loading) return (<SubTitle>Loading..</SubTitle>)
 
   return (
     <View style={styles.container}>
@@ -127,6 +152,7 @@ export default function HomeScreen({ navigation }) {
           style={{ paddingBottom: 20 }}
           showsHorizontalScrollIndicator={false}
         >
+
           {products.map((item) => {
             return (
               <Card
