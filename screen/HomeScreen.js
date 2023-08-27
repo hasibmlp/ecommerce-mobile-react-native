@@ -23,6 +23,7 @@ import Card from "../components/Card";
 import { GET_COLLECTION } from "../graphql/queries";
 import HomeHeader from "../components/HomeHeader";
 import ShopByGrid from "../components/ShopByGrid";
+import BannerImage from "../components/BannerImage";
 
 
 const products = [
@@ -136,6 +137,7 @@ export default function HomeScreen({ navigation }) {
           <HomeHeader />
           <Carousal />
           <ShopByGrid />
+          <BannerImage />
           <ScrollView
             style={{ flexGrow: 0 }}
             horizontal

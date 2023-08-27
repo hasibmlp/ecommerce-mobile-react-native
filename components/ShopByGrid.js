@@ -16,17 +16,17 @@ export default function ShopByGrid() {
         </Wrapper>
       </Cover>
       <Cover>
-        <Image source={require("../assets/girl.jpg")} />
+        <Image source={require("../assets/baby.jpg")} />
         <Wrapper>
             <TransparentBackground source={require("../assets/transBlack.png")} />
-          <Title>Shop Boys</Title>
+          <Title>Shop Baby</Title>
         </Wrapper>
       </Cover>
       <Cover>
-        <Image source={require("../assets/girl.jpg")} />
+        <Image source={require("../assets/boys.jpg")} />
         <Wrapper>
             <TransparentBackground source={require("../assets/transBlack.png")} />
-          <Title>Shop Cloths</Title>
+          <Title>Shop Boy</Title>
         </Wrapper>
       </Cover>
     </Container>
@@ -37,6 +37,7 @@ const Container = styled.View`
   flex-direction: row;
   gap: 2px;
   width: ${itemWidth};
+  padding: 5px 0;
 `;
 const Cover = styled.View`
   width: 100%;
