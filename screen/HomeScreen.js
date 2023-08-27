@@ -20,6 +20,7 @@ import UserInformation from "../components/UserInformation";
 import CategoryCard from "../components/CategoryCard";
 import Card from "../components/Card";
 import { GET_COLLECTION } from "../graphql/queries";
+import HomeHeader from "../components/HomeHeader";
 
 
 const products = [
@@ -129,6 +130,9 @@ export default function HomeScreen({ navigation }) {
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
       <View style={styles.container}>
         <ScrollView>
+
+          <HomeHeader />
+
           <UserInformation navigation={navigation} />
           <Carousal />
 
