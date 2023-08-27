@@ -10,6 +10,7 @@ import {
   Alert,
   ScrollView,
   SafeAreaView,
+  StatusBar,
 } from "react-native";
 import styled from "styled-components";
 
@@ -21,6 +22,7 @@ import CategoryCard from "../components/CategoryCard";
 import Card from "../components/Card";
 import { GET_COLLECTION } from "../graphql/queries";
 import HomeHeader from "../components/HomeHeader";
+import ShopByGrid from "../components/ShopByGrid";
 
 
 const products = [
@@ -132,10 +134,8 @@ export default function HomeScreen({ navigation }) {
         <ScrollView>
 
           <HomeHeader />
-
-          <UserInformation navigation={navigation} />
           <Carousal />
-
+          <ShopByGrid />
           <ScrollView
             style={{ flexGrow: 0 }}
             horizontal
