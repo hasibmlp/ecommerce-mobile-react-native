@@ -42,7 +42,6 @@ const Container = styled.View`
 const Cover = styled.View`
   width: 100%;
   height: 200px;
-  border-radius: 5px;
   overflow: hidden;
   align-items: center;
   justify-content: flex-end;

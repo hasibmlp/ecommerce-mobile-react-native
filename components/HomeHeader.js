@@ -13,7 +13,7 @@ export default function HomeHeader() {
           <ShopCategoryOption>SHOP KIDS</ShopCategoryOption>
         </Wrapper>
         <IconWrapper>
-          <AntDesign name="hearto" size={20} color="white" />
+          <AntDesign name="hearto" size={20} color="black" />
         </IconWrapper>
       </Container>
       <SearchBarInput />
@@ -24,6 +24,7 @@ export default function HomeHeader() {
 
 const MainContainer = styled.View`
   padding: 0 0 15px;
+  background-color: #eaf6ff;
 `;
 
 const Container = styled.View`
@@ -47,11 +48,7 @@ const IconWrapper = styled.View`
   align-items: center;
   width: 42px;
   height: 42px;
-  background-color: #d3d3d3;
+  background-color: white;
   border-radius: 100%;
 `;
 
-const SearchText = styled.Text`
-  font-size: 14px;
-  font-weight: 500;
-`;

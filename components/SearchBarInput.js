@@ -7,11 +7,11 @@ export default function SearchBarInput() {
   return (
     <Container>
       <SearchBar>
-        <AntDesign name="search1" size={22} color="white" />
+        <AntDesign name="search1" size={22} color="black" />
         <SearchText>Search</SearchText>
       </SearchBar>
       <NotifyIcon>
-      <Ionicons name="notifications-outline" size={24} color="white" />
+      <Ionicons name="notifications-outline" size={24} color="black" />
       </NotifyIcon>
     </Container>
   );
@@ -29,12 +29,12 @@ const NotifyIcon = styled.View`
   align-items: center;
   width: 45px;
   height: 45px;
-  background-color: #d3d3d3;
+  background-color: white;
   border-radius: 5px;
 `;
 
 const SearchBar = styled.View`
-  background-color: #d3d3d3;
+  background-color: white;
   height: 45px;
   flex-direction: row;
   align-items: center;

@@ -24,6 +24,9 @@ import { GET_COLLECTION } from "../graphql/queries";
 import HomeHeader from "../components/HomeHeader";
 import ShopByGrid from "../components/ShopByGrid";
 import BannerImage from "../components/BannerImage";
+import CardSlider from "../components/CardSlider";
+import AgeCategorySlider from "../components/AgeCategorySlider";
+import MostWanted from "../components/MostWanted";
 
 
 const products = [
@@ -130,46 +133,19 @@ export default function HomeScreen({ navigation }) {
   if (loading) return (<SubTitle>Loading..</SubTitle>)
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#eaf6ff'}}>
       <View style={styles.container}>
         <ScrollView>
 
           <HomeHeader />
-          <Carousal />
-          <ShopByGrid />
           <BannerImage />
-          <ScrollView
-            style={{ flexGrow: 0 }}
-            horizontal
-            showsHorizontalScrollIndicator={false}
-          >
-            <CategoryCard title={"Men"} />
-            <CategoryCard title={"Women"} />
-            <CategoryCard title={"Large Sizes"} />
-            <CategoryCard title={"Wathes"} />
-          </ScrollView>
+          {/* <Carousal /> */}
+          <ShopByGrid />
+          <MostWanted />
+          <CardSlider />
+          <AgeCategorySlider />
 
           {/* <VerticalCarousal /> */}
-
-          <SubTitle>Featured</SubTitle>
-
-          <ScrollView
-            horizontal
-            style={{ paddingBottom: 20 }}
-            showsHorizontalScrollIndicator={false}
-          >
-
-            {prods.map((item) => {
-              return (
-                <Card
-                  navigation={navigation}
-                  image={item.image}
-                  title={item.title}
-                  price={item.price}
-                />
-              );
-            })}
-          </ScrollView>
 
           {/* {user && Object.keys(user).length ? userWelcome : guestWelcome}
 
@@ -203,7 +179,7 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: '#eaf6ff',
   },
   text: {
     fontSize: 18,

@@ -17,15 +17,15 @@ export default function BannerImage() {
 
 const Container = styled.View`
   width: ${screenWidth};
-  padding: 5px 0;
+  margin: 5px 0;
 `;
 
 const Cover = styled.View`
     width: 100%;
-    height: 100px;
+    height: 200px;
 `
 
 const Image = styled.Image`
   width: 100%;
-  height: 100px;
+  height: 100%;
 `;
